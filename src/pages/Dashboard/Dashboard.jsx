@@ -71,7 +71,7 @@ export default function Dashboard() {
 
           const formatted = `${d.date.slice(0, 4)}-${d.date.slice(4, 6)}-${d.date.slice(6, 8)}`;
           const date = new Date(formatted)
-
+          
           return date.toLocaleDateString("pt-BR", { weekday: "short" });
         });
 
