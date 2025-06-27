@@ -1,0 +1,19 @@
+.navbarCustom {
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.brandText {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #38bdf8;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .brandText {
+    font-size: 1.4rem;
+  }
+}

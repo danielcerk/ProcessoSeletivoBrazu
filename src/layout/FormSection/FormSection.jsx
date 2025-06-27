@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Container, Form, Button, Row, Col, Alert } from "react-bootstrap";
-
 import emailjs from "@emailjs/browser";
 
+import style from './FormSection.module.css';
+
 export default function FormSection() {
-
     const formRef = useRef();
-
     const [sent, setSent] = useState(false);
     const [error, setError] = useState(false);
 
@@ -24,65 +23,52 @@ export default function FormSection() {
                 setSent(true);
                 setError(false);
                 formRef.current.reset();
+
+                if (window.fbq) {
+
+                    window.fbq('track', 'Lead');
+                    
+                }
             })
             .catch(() => {
                 setError(true);
                 setSent(false);
             });
-    }
+    };
 
     return (
-
-        <section className="py-5 bg-white">
-
+        <section className={style.section}>
             <Container>
-
                 <Row className="justify-content-center">
-
                     <Col md={8}>
-
-                        <h2 className="text-center mb-4">Entre em Contato</h2>
+                        <h2 className={`text-center ${style.title}`}>Entre em Contato</h2>
 
                         {sent && <Alert variant="success">Mensagem enviada com sucesso!</Alert>}
                         {error && <Alert variant="danger">Erro ao enviar. Tente novamente.</Alert>}
 
                         <Form id="gm-form" ref={formRef} onSubmit={sendEmail}>
-
                             <Form.Group controlId="formName" className="mb-3">
-
-                                <Form.Label>Nome</Form.Label>
-                                <Form.Control type="text" name="name" required />
-
+                                <Form.Label className={style.label}>Nome</Form.Label>
+                                <Form.Control type="text" name="name" required className={style.formControl} />
                             </Form.Group>
 
                             <Form.Group controlId="formEmail" className="mb-3">
-
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" name="email" required />
-
+                                <Form.Label className={style.label}>Email</Form.Label>
+                                <Form.Control type="email" name="email" required className={style.formControl} />
                             </Form.Group>
 
-                            <Form.Group controlId="formMessage" className="mb-3">
-
-                                <Form.Label>Mensagem</Form.Label>
-                                <Form.Control as="textarea" rows={4} name="message" required />
-
+                            <Form.Group controlId="formMessage" className="mb-4">
+                                <Form.Label className={style.label}>Mensagem</Form.Label>
+                                <Form.Control as="textarea" rows={4} name="message" required className={style.formControl} />
                             </Form.Group>
 
                             <div className="text-center">
-
-                                <Button type="submit" variant="primary">Enviar</Button>
-
+                                <Button type="submit" className={style.button}>Enviar</Button>
                             </div>
-
                         </Form>
-
                     </Col>
-
                 </Row>
-
             </Container>
-
         </section>
     );
 }

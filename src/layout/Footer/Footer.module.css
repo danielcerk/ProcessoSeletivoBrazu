@@ -1,0 +1,14 @@
+.footerCustom {
+  background-color: #1e293b;
+  color: #94a3b8;
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.9rem;
+  border-top: 2px solid #38bdf8;
+}
+
+.footerCustom small {
+  display: block;
+  color: #94a3b8;
+}

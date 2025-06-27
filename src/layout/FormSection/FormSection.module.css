@@ -1,0 +1,41 @@
+.section {
+  padding: 4rem 0;
+  color: #f1f5f9;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #38bdf8;
+  margin-bottom: 2rem;
+}
+
+.formControl {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  color: #f1f5f9;
+}
+
+.formControl:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.25);
+}
+
+.label {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.button {
+  background-color: #22c55e !important;
+  border: none;
+  font-weight: 500;
+  padding: 0.6rem 2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #16a34a !important;
+}

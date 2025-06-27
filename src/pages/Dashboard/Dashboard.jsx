@@ -11,6 +11,8 @@ import {
   Legend
 } from "chart.js";
 
+import style from './Dashboard.module.css'
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Dashboard() {
@@ -66,7 +68,10 @@ export default function Dashboard() {
         const data = await res.json();
 
         const labels = data.map(d => {
-          const date = new Date(d.date);
+
+          const formatted = `${d.date.slice(0, 4)}-${d.date.slice(4, 6)}-${d.date.slice(6, 8)}`;
+          const date = new Date(formatted)
+          
           return date.toLocaleDateString("pt-BR", { weekday: "short" });
         });
 
@@ -97,32 +102,33 @@ export default function Dashboard() {
   if (error) return <Alert variant="danger" className="mt-5 text-center">{error}</Alert>;
 
   return (
-    <Container className="py-5">
-      <h1 className="mb-4 text-center">Dashboard</h1>
+    <Container className={`${style.container} py-5`}>
+      <h1 className={`${style.title} text-center`}>Dashboard</h1>
+
       <Row className="mb-4">
         <Col md={4}>
-          <Card className="text-center p-3">
-            <Card.Body>
-              <Card.Title>Total de Seguidores</Card.Title>
+          <Card className={`${style.card} text-center`}>
+            <Card.Body className={style.cardBody}>
+              <Card.Title className={style.cardTitle}>Total de Seguidores</Card.Title>
               <h2>{followers.toLocaleString()}</h2>
-              <p>Instagram</p>
+              <p className="text-muted">Instagram</p>
             </Card.Body>
           </Card>
         </Col>
 
         <Col md={4}>
-          <Card>
+          <Card className={style.card}>
             {lastPost ? (
               <>
-                <Card.Img variant="top" src={lastPost.media_url} alt="Último post" />
-                <Card.Body>
-                  <Card.Title>Último Post</Card.Title>
-                  <Card.Text>{lastPost.caption || "Sem legenda"}</Card.Text>
-                  <Card.Text><strong>{lastPost.like_count || 0}</strong> curtidas</Card.Text>
+                <Card.Img variant="top" src={lastPost.media_url} alt="Último post" className={style.cardImg} />
+                <Card.Body className={style.cardBody}>
+                  <Card.Title className={style.cardTitle}>Último Post</Card.Title>
+                  <Card.Text className={style.postText}>{lastPost.caption || "Sem legenda"}</Card.Text>
+                  <Card.Text className={style.likes}><strong>{lastPost.like_count || 0}</strong> curtidas</Card.Text>
                 </Card.Body>
               </>
             ) : (
-              <Card.Body>
+              <Card.Body className={style.cardBody}>
                 <Card.Text>Nenhum post encontrado.</Card.Text>
               </Card.Body>
             )}
@@ -130,7 +136,7 @@ export default function Dashboard() {
         </Col>
 
         <Col md={4}>
-          <Card className="p-3">
+          <Card className={`${style.card} p-3`}>
             {visitorData ? (
               <Bar data={visitorData} options={visitorOptions} />
             ) : (
@@ -140,5 +146,6 @@ export default function Dashboard() {
         </Col>
       </Row>
     </Container>
+
   );
 }
