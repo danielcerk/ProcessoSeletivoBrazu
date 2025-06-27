@@ -64,7 +64,7 @@ export default function Dashboard() {
 
     async function fetchVisitors() {
       try {
-        const res = await fetch("http://processo-seletivo-brazu-backend.vercel.app/api/visitors");
+        const res = await fetch("https://processo-seletivo-brazu-backend.vercel.app/api/visitors");
         const data = await res.json();
 
         const labels = data.map(d => {
