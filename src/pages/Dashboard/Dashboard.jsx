@@ -64,14 +64,14 @@ export default function Dashboard() {
 
     async function fetchVisitors() {
       try {
-        const res = await fetch("http://localhost:3000/api/visitors");
+        const res = await fetch("http://processo-seletivo-brazu-backend.vercel.app/api/visitors");
         const data = await res.json();
 
         const labels = data.map(d => {
 
           const formatted = `${d.date.slice(0, 4)}-${d.date.slice(4, 6)}-${d.date.slice(6, 8)}`;
           const date = new Date(formatted)
-          
+
           return date.toLocaleDateString("pt-BR", { weekday: "short" });
         });
 
