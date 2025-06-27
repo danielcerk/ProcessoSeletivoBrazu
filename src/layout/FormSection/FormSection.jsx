@@ -46,7 +46,7 @@ export default function FormSection() {
                         {sent && <Alert variant="success">Mensagem enviada com sucesso!</Alert>}
                         {error && <Alert variant="danger">Erro ao enviar. Tente novamente.</Alert>}
 
-                        <Form ref={formRef} onSubmit={sendEmail}>
+                        <Form id="gm-form" ref={formRef} onSubmit={sendEmail}>
 
                             <Form.Group controlId="formName" className="mb-3">
 
